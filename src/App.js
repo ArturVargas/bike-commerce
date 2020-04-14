@@ -5,12 +5,7 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 
 import Home from './containers/Home/Home';
-
-const HatsPage = () => (
-  <div>
-    <h1>HATS PAGE</h1>
-  </div>
-);
+import Shop from './containers/Shop/Shop';
 
 function App() {
   return (
@@ -18,7 +13,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path='/' component={Home} />
-        <Route path='/hats' component={HatsPage} />
+        <Route path='/shop' component={Shop} />
       </Switch>
     </div>
   );
