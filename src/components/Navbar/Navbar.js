@@ -17,6 +17,9 @@ const Navbar = () => (
       <Link className='option' to='/shop'>
         CONTACT
       </Link>
+      <Link className='option' to='/login'>
+        SIGN IN
+      </Link>
     </div>
   </div>
 );
