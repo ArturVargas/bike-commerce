@@ -3,10 +3,12 @@ import React, { Component } from 'react';
 import FormField from '../FormField/FormField';
 import CustomButton from '../CustomButton/CustomButton';
 
+import { signInWithGoogle } from '../../firebase/firebase.utils';
+
 import './SignIn.scss';
 
 class SignIn extends Component {
-  constructor(){
+  constructor() {
     super()
 
     this.state = {
@@ -27,8 +29,8 @@ class SignIn extends Component {
     this.setState({ [name]: value });
   };
 
-  render(){
-    return(
+  render() {
+    return (
       <div className='sign-in'>
         <h2>Ya tengo una cuenta</h2>
         <span>Inicia sesión con tu correo y contraseña</span>
@@ -50,9 +52,14 @@ class SignIn extends Component {
             label='Password'
             required
           />
+          <div className='buttons'>
           <CustomButton type='submit'>
             Iniciar sesión
           </CustomButton>
+          <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+            Iniciar sesión con Google
+          </CustomButton> 
+          </div>
         </form>
       </div>
     )
