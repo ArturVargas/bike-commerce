@@ -2,14 +2,10 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
+import { credentials } from '../firebase.credentials';
+
 const config = {
-  apiKey: "yourAPIKey",
-  authDomain: "bike-commerce-85294.firebaseapp.com",
-  databaseURL: "yourDatabaseURL",
-  projectId: "bike-commerce-85294",
-  storageBucket: "bike-commerce-85294.appspot.com",
-  messagingSenderId: "",
-  appId: ""
+  ...credentials
 };
 
 firebase.initializeApp(config);
@@ -20,5 +16,30 @@ export const firestore = firebase.firestore();
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
+
+export const createUserProfileDoc = async (userAuth, additionalData) => {
+  if(!userAuth) return;
+
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  const snapsShot = await userRef.get();
+
+  if(!snapsShot.exists) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalData
+      })
+    } catch (error) {
+      console.log('No se pudo Crear el Usuario', error.message);
+    }
+  
+  }
+  return userRef;
+};
 
 export default firebase;
