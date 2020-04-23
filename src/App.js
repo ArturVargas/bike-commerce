@@ -46,7 +46,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar currentUser={this.state.currentUser} />
+        <Navbar/>
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/login' component={Login} />
