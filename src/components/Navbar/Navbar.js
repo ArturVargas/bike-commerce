@@ -6,9 +6,12 @@ import { auth } from '../../firebase/firebase.utils';
 
 import { ReactComponent as Logo } from '../../assets/original.svg';
 
+import CartIcon from '../CartIcon/CartIcon';
+import CartDropdown from '../CartDropdown/CartDropdown';
+
 import './Navbar.scss';
 
-const Navbar = ({ currentUser }) => (
+const Navbar = ({ currentUser, cartDropdownHidden }) => (
   <div className='header'>
     <Link className='logo-container' to='/'>
       <Logo className='logo' />
@@ -32,12 +35,18 @@ const Navbar = ({ currentUser }) => (
             SIGN IN
           </Link>
       }
+      <CartIcon />
     </div>
+    {
+      cartDropdownHidden ? null :
+        <CartDropdown />
+    }
   </div>
 );
 
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser
+const mapStateToProps = ({ user: { currentUser }, cart: { cartDropdownHidden } }) => ({
+  currentUser,
+  cartDropdownHidden
 });
 
 export default connect(mapStateToProps)(Navbar);
