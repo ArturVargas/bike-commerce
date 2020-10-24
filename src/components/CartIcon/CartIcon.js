@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import { setDropdownVisible } from '../../redux/cart/cart.actions';
 import { selectCartQuantityItems } from '../../redux/cart/cart.selectors';
@@ -19,8 +20,8 @@ const mapDispatchToProps = (dispatch) => ({
   setDropdownVisible: () => dispatch(setDropdownVisible())
 });
 
-const mapStateToProps = (state) => ({
-  itemCount: selectCartQuantityItems(state)
+const mapStateToProps = createStructuredSelector({
+  itemCount: selectCartQuantityItems
 });
 
 export default connect(
