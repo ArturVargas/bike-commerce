@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { withRouter } from 'react-router-dom';
 
 import { selectCartItems } from '../../redux/cart/cart.selectors';
 
@@ -9,7 +10,7 @@ import CartItem from '../CartItem/CartItem';
 
 import './CartDropdown.scss';
 
-const CartDropdown = ({ cartItems }) => (
+const CartDropdown = ({ cartItems, history }) => (
   <div className="cart-dropdown">
     <div className="cart-items">
       {cartItems.length ? (
@@ -19,7 +20,7 @@ const CartDropdown = ({ cartItems }) => (
           <span className="empty-message">Agrega productos al carrito</span>
         )
       }
-      <CustomButton>Checkout</CustomButton>
+      <CustomButton onClick={() => history.push('/checkout')}>Checkout</CustomButton>
     </div>
   </div>
 );
@@ -28,4 +29,4 @@ const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems
 });
 
-export default connect(mapStateToProps)(CartDropdown);
+export default withRouter(connect(mapStateToProps)(CartDropdown));

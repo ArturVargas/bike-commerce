@@ -10,6 +10,7 @@ import Navbar from './components/Navbar/Navbar';
 import Home from './containers/Home/Home';
 import Login from './containers/Login/Login';
 import Shop from './containers/Shop/Shop';
+import Checkout from './containers/Checkout/Checkout';
 import { setCurrentUser } from './redux/user/user.actions';
 import { auth, createUserProfileDoc } from './firebase/firebase.utils';
 
@@ -44,6 +45,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/shop' component={Shop} />
+          <Route exact path='/checkout' component={Checkout} />
           <Route exact path='/login' render={() => 
             this.props.currentUser ? 
             (<Redirect to='/' />)
