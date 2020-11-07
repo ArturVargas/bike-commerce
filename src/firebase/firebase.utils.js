@@ -2,10 +2,16 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-import { credentials } from '../firebase.credentials';
+// import { credentials } from '../firebase.credentials';
 
 const config = {
-  ...credentials
+  apiKey: "AIzaSyCHFOGiw6IdLhh5rwOqUjDBEdv4zAXa-_g",
+  authDomain: "bike-commerce-85294.firebaseapp.com",
+  databaseURL: "https://bike-commerce-85294.firebaseio.com",
+  projectId: "bike-commerce-85294",
+  storageBucket: "bike-commerce-85294.appspot.com",
+  messagingSenderId: "713615542562",
+  appId: "1:713615542562:web:6893fe15248c7ed6f07d7b"
 };
 
 firebase.initializeApp(config);
