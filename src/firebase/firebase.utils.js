@@ -5,13 +5,13 @@ import 'firebase/auth';
 // import { credentials } from '../firebase.credentials';
 
 const config = {
-  apiKey: "AIzaSyCHFOGiw6IdLhh5rwOqUjDBEdv4zAXa-_g",
-  authDomain: "bike-commerce-85294.firebaseapp.com",
-  databaseURL: "https://bike-commerce-85294.firebaseio.com",
-  projectId: "bike-commerce-85294",
-  storageBucket: "bike-commerce-85294.appspot.com",
-  messagingSenderId: "713615542562",
-  appId: "1:713615542562:web:6893fe15248c7ed6f07d7b"
+  apiKey: "AIzaSyDGChf1Q81LDBwNBaE9Ckty0l5WLqWGGhY",
+  authDomain: "bike-commerce-2a240.firebaseapp.com",
+  databaseURL: "https://bike-commerce-2a240.firebaseio.com",
+  projectId: "bike-commerce-2a240",
+  storageBucket: "bike-commerce-2a240.appspot.com",
+  messagingSenderId: "530124836635",
+  appId: "1:530124836635:web:2f09739e01a9ac57108dbe"
 };
 
 firebase.initializeApp(config);
