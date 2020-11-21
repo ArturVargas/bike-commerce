@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import { selectCurrentUser } from './redux/user/user.selectors';
+import { checkUserSession } from './redux/user/user.actions';
 
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
@@ -16,19 +17,8 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    // const { setCurrentUser } = this.props;
-    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-    //   if(userAuth) {
-    //     const userRef = await createUserProfileDoc(userAuth);
-    //     userRef.onSnapshot(snapShot => {
-    //       setCurrentUser({
-    //           id: snapShot.id,
-    //           ...snapShot.data()
-    //       });
-    //     });
-    //   }
-    //   setCurrentUser(userAuth);
-    // }); 
+    const { checkUser } = this.props;
+    checkUser();
   }
 
   componentWillUnmount() {
@@ -59,6 +49,11 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  checkUser: () => dispatch(checkUserSession())
+});
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(App);
