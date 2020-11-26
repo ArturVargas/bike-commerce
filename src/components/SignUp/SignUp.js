@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import FormField from '../FormField/FormField';
 import CustomButton from '../CustomButton/CustomButton';
 
-import { auth, createUserProfileDoc } from '../../firebase/firebase.utils';
+import { signUpStart } from '../../redux/user/user.actions';
 
 import './SignUp.scss';
 
@@ -21,28 +22,13 @@ class SignUp extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
+    const { singUp } = this.props
     const { displayName, email, password, confirmPassword } = this.state;
     if (password !== confirmPassword) {
       alert('Las contraseñas no coinciden...!!');
       return;
     }
-
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-      await createUserProfileDoc(user, { displayName });
-      this.setState({
-        displayName: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-      });
-
-    } catch (error) {
-      console.error(error);
-    }
+    singUp(displayName, email, password)
   };
 
   handleChange = (event) => {
@@ -99,4 +85,8 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+const mapDispatchToProps = (dispatch) => ({
+  singUp: (displayName, email, password) => dispatch(signUpStart({ displayName, email, password }))
+})
+
+export default connect(null, mapDispatchToProps)(SignUp);
